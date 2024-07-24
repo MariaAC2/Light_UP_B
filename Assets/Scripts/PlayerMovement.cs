@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float speed = 10;
     [SerializeField] float jumpForce = 5;
+    [SerializeField] Transform cameraOrientation;
     [SerializeField] float groundCheckDistance = 0.1f; // Distance to check for the ground
     [SerializeField] LayerMask groundMask; // Layer mask to specify what is ground
 
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         horInput = Input.GetAxisRaw("Horizontal") * speed;
         vertInput = Input.GetAxisRaw("Vertical") * speed;
 
-        Vector3 move = transform.right * horInput + transform.forward * vertInput;
+        Vector3 move = cameraOrientation.right * horInput + cameraOrientation.forward * vertInput;
         rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
 
         // Ground check using Raycast
@@ -40,5 +41,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
 }
