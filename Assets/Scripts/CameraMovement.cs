@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    public Transform cameraPosition;
+    public float offsetY = 10f;
+
+    [SerializeField] Transform player;
 
     private void Update()
     {
-        transform.position = cameraPosition.position;
+        transform.position = player.position + new Vector3(0, offsetY, 0);
     }
 }
