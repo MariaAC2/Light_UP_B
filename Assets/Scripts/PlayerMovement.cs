@@ -25,13 +25,13 @@ public class PlayerMovement : MonoBehaviour
         horInput = Input.GetAxisRaw("Horizontal");
         vertInput = Input.GetAxisRaw("Vertical");
 
-        Vector3 velocity = transform.forward * vertInput * speed;
-        Vector3 angularVelocity = Vector3.up * horInput * angularSpeed; // in Euler angles
-        transform.Translate(velocity * Time.deltaTime, Space.World);
-        transform.Rotate(angularVelocity * Time.deltaTime);
+        Vector3 velocity = vertInput * speed * transform.forward;
+        Quaternion rotation = Quaternion.Euler(horInput * angularSpeed * Time.deltaTime * Vector3.up);
+        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
+        rb.MoveRotation(transform.rotation * rotation);
 
         // // Ground check using Raycast
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundMask);
+        isGrounded = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), groundCheckDistance, groundMask);
 
         Debug.Log("Is Grounded: " + isGrounded); // Add this line for debugging
 
