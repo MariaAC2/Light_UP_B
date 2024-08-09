@@ -47,26 +47,27 @@ public class GameBoard : MonoBehaviour
             Transform outputNode = outputGate.Find("Gate Out");
             Transform inputNode = inputGate.Find($"Gate In {inputIndex}");
 
-            wireObject.transform.parent = transform;
+            Vector3 outputPosition = transform.InverseTransformPoint(outputNode.position);
+            Vector3 inputPosition = transform.InverseTransformPoint(inputNode.position);
+
+            wireObject.transform.SetParent(transform);
             lineRenderer.useWorldSpace = false;
 
             if (outputNode.position.y != inputNode.position.y) {
                 // connect via zigzag
                 lineRenderer.positionCount = 4;
-                float oneThird = Mathf.Lerp(outputNode.position.x, inputNode.position.x, 1f/3);
-                float twoThirds = Mathf.Lerp(outputNode.position.x, inputNode.position.x, 2f/3);
+                float oneThird = Mathf.Lerp(outputPosition.x, inputPosition.x, 1f/3);
+                float twoThirds = Mathf.Lerp(outputPosition.x, inputPosition.x, 2f/3);
 
-                lineRenderer.SetPosition(0, outputNode.position);
-                // if (!wire) {
-                    lineRenderer.SetPosition(1, new Vector3(oneThird, outputNode.position.y, outputNode.position.z));
-                    lineRenderer.SetPosition(2, new Vector3(twoThirds, inputNode.position.y, inputNode.position.z));
-                // }
-                lineRenderer.SetPosition(3, inputNode.position);
+                lineRenderer.SetPosition(0, outputPosition);
+                lineRenderer.SetPosition(1, new Vector3(oneThird, outputPosition.y));
+                lineRenderer.SetPosition(2, new Vector3(twoThirds, inputPosition.y));
+                lineRenderer.SetPosition(3, inputPosition);
             } else {
                 // connect directly
                 lineRenderer.positionCount = 2;
-                lineRenderer.SetPosition(0, outputNode.position);
-                lineRenderer.SetPosition(1, inputNode.position);
+                lineRenderer.SetPosition(0, outputPosition);
+                lineRenderer.SetPosition(1, inputPosition);
             }
         }
     }
