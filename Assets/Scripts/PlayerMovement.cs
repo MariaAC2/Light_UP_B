@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -17,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Physics.gravity = new Vector3(0, -20f, 0);
+        StartCoroutine(Dialogs.ShowDialog(new List<string> {
+            "Welcome to the game! Some very very very long text meant to try this feature! Some more very very very long text that should be displayed in the dialog box!",
+            "This is the second dialog box!"
+        }));
     }
 
     // Update is called once per frame
@@ -32,8 +37,6 @@ public class PlayerMovement : MonoBehaviour
 
         // // Ground check using Raycast
         isGrounded = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), groundCheckDistance, groundMask);
-
-        Debug.Log("Is Grounded: " + isGrounded); // Add this line for debugging
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
