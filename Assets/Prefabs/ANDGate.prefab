@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2535549919722056213}
   - component: {fileID: 5121144683533124836}
+  - component: {fileID: 7422640246372027797}
   m_Layer: 0
   m_Name: ANDGate
   m_TagString: Untagged
@@ -87,6 +88,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7422640246372027797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288210937658802603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343ab202b2ebd5f4f9d5e3e8264b242d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2455372990496697068
 GameObject:
   m_ObjectHideFlags: 0

@@ -64,17 +64,18 @@ public class GameBoard : MonoBehaviour
     void SetupGates()
     {
         inputs = new List<InputButton>(inputsContainer.childCount);
-        List<BoardObject> board = new(transform.childCount + inputsContainer.childCount - 1);
+        List<BoardObject> board = new(inputsContainer.childCount + gatesContainer.childCount);
 
         foreach (Transform input in inputsContainer) {
-            board[input.GetSiblingIndex()] = inputs[input.GetSiblingIndex()] = input.GetComponent<InputButton>();
+            board.Add(input.GetComponent<InputButton>());
+            inputs.Add(input.GetComponent<InputButton>());
         }
         foreach (Transform gate in gatesContainer) {
-            board[gate.GetSiblingIndex() + inputs.Count] = gate.GetComponent<BoardObject>();
+            board.Add(gate.GetComponent<BoardObject>());
         }
         foreach (var (outputGateIndex, inputGateIndex, inputIndex) in connections) {
             board[outputGateIndex].Outputs.Add(board[inputGateIndex]);
-            board[inputGateIndex].Inputs[inputIndex] = board[outputGateIndex];
+            board[inputGateIndex].Inputs.Add(board[outputGateIndex]);
 
             LineRenderer wire = transform
                 .Find($"Wires/Wire {outputGateIndex}-{inputGateIndex}:{inputIndex}")
@@ -99,15 +100,19 @@ public class GameBoard : MonoBehaviour
 
             Transform outputGate = ContainerFor(outputGateIndex).Find($"Gate {outputGateIndex}");
             Transform inputGate = ContainerFor(inputGateIndex).Find($"Gate {inputGateIndex}");
-            Transform outputNode = outputGate.Find("Gate Out");
-            Transform inputNode = inputGate.Find($"Gate In {inputIndex}");
+            Transform outputNode = outputGate.Find("Output");
+            Transform inputNode = inputGate.Find($"Input{inputIndex}");
 
             Vector3 outputPosition = transform.InverseTransformPoint(outputNode.position);
             Vector3 inputPosition = transform.InverseTransformPoint(inputNode.position);
 
             wireObject.transform.SetParent(wiresContainer);
             wireObject.transform.localPosition = Vector3.zero;
+            wireObject.transform.localScale = Vector3.one;
             lineRenderer.useWorldSpace = false;
+            lineRenderer.widthCurve = AnimationCurve.Constant(0, 1, 0.4f);
+            lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+            lineRenderer.startColor = lineRenderer.endColor = new Color(0, 100f/255f, 179f/255f);
 
             if (outputNode.position.y != inputNode.position.y) {
                 // connect via zigzag
