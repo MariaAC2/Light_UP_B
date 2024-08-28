@@ -23,6 +23,7 @@ public class GameBoard : MonoBehaviour
     private Transform outputsContainer = null;
 
     [SerializeField] private List<Connection> connections = new();
+    [SerializeField] private bool realTimeUpdates = true;
     private List<InputButton> inputs = null;
 
     // Start is called before the first frame update
@@ -36,7 +37,7 @@ public class GameBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Application.IsPlaying(gameObject)) {
+        if (!Application.IsPlaying(gameObject) && realTimeUpdates) {
             SetupHierarchy();
             SetupWires();
         }

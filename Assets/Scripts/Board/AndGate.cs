@@ -1,5 +1,5 @@
 public class AndGate : BoardObject {
-    public void Start() {
-        Inputs.Capacity = 2;
+    public override bool Value {
+        get => Inputs[0].Value && Inputs[1].Value;
     }
 }
