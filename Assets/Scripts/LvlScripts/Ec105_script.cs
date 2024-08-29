@@ -16,3 +16,4 @@ public class DialogTrigger : MonoBehaviour
     }
 
 }
+

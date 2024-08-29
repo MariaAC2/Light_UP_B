@@ -27,6 +27,7 @@ public class DialogueManager : MonoBehaviour
                 new Dialogue(new List<string> { "Welcome to our game", "Hope you enjoy" }, "Start"),
                 new Dialogue(new List<string> { "Welcome Back!", "Have fun" }, "StartAgain"),
                 new Dialogue(new List<string> {"Welcome to the first room! You have to solve the circuit on the table"}, "Ec105_in"),
+                new Dialogue(new List<string> {"Now press P to see the table clearer and play, and back to P to return"}, "Ec105_in2")
             };
             PlayDialogue("Start");
         }
