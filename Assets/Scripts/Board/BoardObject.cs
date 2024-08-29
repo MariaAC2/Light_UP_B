@@ -7,5 +7,8 @@ public class BoardObject : MonoBehaviour {
     public List<BoardObject> Outputs { get; set; } = new(1);
     public List<LineRenderer> Wires { get; set; } = new(1);
 
-    public virtual bool Value { get; set; }
+    public bool Value { get; set; }
+
+    public virtual void onChange() {
+    }
 }
