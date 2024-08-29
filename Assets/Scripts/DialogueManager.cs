@@ -20,12 +20,13 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //SaveGame.DeleteSaves();
+        SaveGame.DeleteSaves();
         gameDialogues = SaveGame.LoadDialogues();
         if(gameDialogues == null) { 
             gameDialogues = new Dialogue[] { 
                 new Dialogue(new List<string> { "Welcome to our game", "Hope you enjoy" }, "Start"),
                 new Dialogue(new List<string> { "Welcome Back!", "Have fun" }, "StartAgain"),
+                new Dialogue(new List<string> {"Welcome to the first room! You have to solve the circuit on the table"}, "Ec105_in"),
             };
             PlayDialogue("Start");
         }
@@ -35,7 +36,7 @@ public class DialogueManager : MonoBehaviour
         }
 
     }
-    void PlayDialogue(string hook, bool persistent = false)
+    public void PlayDialogue(string hook, bool persistent = false)
     {
         for(int i=0;i<gameDialogues.Length; i++) 
         {
