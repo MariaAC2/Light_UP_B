@@ -59,7 +59,7 @@ public class GameBoard : MonoBehaviour
         inputsContainer.SetParent(transform);
         gatesContainer.SetParent(transform);
         wiresContainer.SetParent(transform);
-        outputsContainer.SetParent(transform);
+
     }
 
     void SetupGates()
