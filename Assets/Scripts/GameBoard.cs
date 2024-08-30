@@ -110,6 +110,7 @@ public class GameBoard : MonoBehaviour
             wireObject.transform.SetParent(wiresContainer);
             wireObject.transform.localPosition = Vector3.zero;
             wireObject.transform.localScale = Vector3.one;
+            wireObject.transform.localRotation = Quaternion.identity;
             lineRenderer.useWorldSpace = false;
             lineRenderer.widthCurve = AnimationCurve.Constant(0, 1, 0.4f);
             lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
