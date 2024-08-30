@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CameraSwitch : MonoBehaviour
+public class CameraSwitch2 : MonoBehaviour
 {
     public Camera mainCamera; // Camera principală (3D, care urmărește jucătorul)
     public Camera camera2D; // Noua cameră 2D poziționată în fața tablei
@@ -18,19 +18,18 @@ public class CameraSwitch : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("ShowDialogue");
-            manager.PlayDialogue("Ec105_in2");
+            manager.PlayDialogue("Ec001_in");
 
         }
     }
-
     void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             // Verifică dacă tasta P a fost apăsată
             if (Input.GetKeyDown(KeyCode.P))
             {
-                Debug.Log("Tasta P a fost apăsată in ec105!");
+                Debug.Log("Tasta P a fost apăsată in ec001!");
 
                 // Comută între 2D și 3D
                 if (is2D)
@@ -49,7 +48,7 @@ public class CameraSwitch : MonoBehaviour
     //functii schimbare:
     void SwitchTo2DView()
     {
-        //Debug.Log("Switching to 2D View");
+        Debug.Log("Switching to 2D View");
 
         // Dezactivează camera principală și activează camera 2D
         mainCamera.enabled = false;
@@ -58,7 +57,7 @@ public class CameraSwitch : MonoBehaviour
         camera2D.enabled = true;
         camera2D.GetComponent<AudioListener>().enabled = true;
 
-        Debug.Log("Camera 2D ec105 is active: " + camera2D.enabled);
+        Debug.Log("Camera 2D ec001 is active: " + camera2D.enabled);
     }
 
     void SwitchTo3DView()

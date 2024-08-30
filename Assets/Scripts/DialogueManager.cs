@@ -24,10 +24,14 @@ public class DialogueManager : MonoBehaviour
         gameDialogues = SaveGame.LoadDialogues();
         if(gameDialogues == null) { 
             gameDialogues = new Dialogue[] { 
-                new Dialogue(new List<string> { "Welcome to our game", "Hope you enjoy" }, "Start"),
+                new Dialogue(new List<string> { "Welcome to our game", "Our college has a problem: the lights are not working and you have to light UPB up!", "You will have to solve circuits in the rooms and help us!" , "Hope you enjoy" }, "Start"),
                 new Dialogue(new List<string> { "Welcome Back!", "Have fun" }, "StartAgain"),
                 new Dialogue(new List<string> {"Welcome to the first room! You have to solve the circuit on the table"}, "Ec105_in"),
-                new Dialogue(new List<string> {"Now press P to see the table clearer and play, and back to P to return"}, "Ec105_in2")
+                new Dialogue(new List<string> {"Now press P to see the table clearer and play, and back to P to return and go to another room"}, "Ec105_in2"),
+                new Dialogue(new List<string> {"Go to EC001 for the next circuit" }, "nextEc001"),
+                new Dialogue(new List<string> {"Enter the room on the right" }, "enterEc001"),
+                new Dialogue(new List<string> {"Now press P to see the table clearer and play, and back to P to return and go to another room"}, "Ec001_in"),
+                new Dialogue(new List<string> {"Go to EC004, the first room from the other side!" }, "nextEc004"),
             };
             PlayDialogue("Start");
         }
