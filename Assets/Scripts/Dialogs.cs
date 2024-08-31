@@ -37,7 +37,7 @@ public static class Dialogs
             dialogText.GetComponent<TMP_Text>().text = "";
             for (int i = 0; i < dialog.Length; i++)
             {
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetKeyDown(KeyCode.Return))
                 {
                     dialogText.GetComponent<TMP_Text>().text = dialog;
                     break;
@@ -45,7 +45,7 @@ public static class Dialogs
                 dialogText.GetComponent<TMP_Text>().text += dialog[i];
                 yield return new WaitForSeconds(1f / dialog.Length);
             }
-            yield return new WaitUntil(() => Input.GetMouseButton(0));
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
         }
         // remove text
         dialogText.GetComponent<TMP_Text>().text = "";
