@@ -22,7 +22,6 @@ public class InputButton : BoardObject {
 
     private void OnMouseDown() {
         // Comută starea între TRUE și FALSE când utilizatorul face clic pe buton
-        Debug.Log("Button pressed");
         Value = !Value;
     }
 
