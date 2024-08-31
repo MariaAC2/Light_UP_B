@@ -32,6 +32,7 @@ public class DialogueManager : MonoBehaviour
                 new Dialogue(new List<string> {"Enter the room on the right" }, "enterEc001"),
                 new Dialogue(new List<string> {"Now press P to see the table clearer and play, and back to P to return and go to another room"}, "Ec001_in"),
                 new Dialogue(new List<string> {"Go to EC004, the first room from the other side!" }, "nextEc004"),
+                new Dialogue(new List<string> {"The room lighted up! Go to the next one!"}, "win"),
             };
             PlayDialogue("Start");
         }

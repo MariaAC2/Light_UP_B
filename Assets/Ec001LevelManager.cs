@@ -1,10 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Ec001LevelManager : MonoBehaviour
 {
     public BoardObject[] winConditions;
+    public Light levelLight;  // Referință la lumina din scenă
     bool levelFinished = false;
 
     // Update is called once per frame
@@ -13,16 +14,21 @@ public class Ec001LevelManager : MonoBehaviour
         bool won = true;
         foreach (BoardObject winCondition in winConditions)
         {
-            if(!winCondition.Value)
+            if (!winCondition.Value)
             {
                 won = false;
+                break;
             }
         }
+
         if (won && !levelFinished)
         {
-            //aici cod pt cand e completat nivelul
+            // Nivel completat corect
             Debug.Log("Player has completed ec001");
-            levelFinished = won;
-        }        
+            levelFinished = true;
+
+            // Aprinde lumina
+            levelLight.enabled = true;
+        }
     }
 }
