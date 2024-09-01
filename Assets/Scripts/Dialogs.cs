@@ -37,15 +37,17 @@ public static class Dialogs
             dialogText.GetComponent<TMP_Text>().text = "";
             for (int i = 0; i < dialog.Length; i++)
             {
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyUp(KeyCode.Return))
                 {
                     dialogText.GetComponent<TMP_Text>().text = dialog;
+                    yield return null;
                     break;
                 }
                 dialogText.GetComponent<TMP_Text>().text += dialog[i];
                 yield return new WaitForSeconds(1f / dialog.Length);
             }
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+            yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.Return));
+            yield return null;
         }
         // remove text
         dialogText.GetComponent<TMP_Text>().text = "";
