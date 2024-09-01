@@ -81,7 +81,10 @@ public class GameBoard : MonoBehaviour
             LineRenderer wire = transform
                 .Find($"Wires/Wire {outputGateIndex}-{inputGateIndex}:{inputIndex}")
                 .GetComponent<LineRenderer>();
-            board[inputGateIndex].Wires.Add(wire);
+            board[outputGateIndex].Wires.Add(wire);
+        }
+        foreach (var input in inputs) {
+            input.Init();
         }
     }
 
@@ -114,7 +117,7 @@ public class GameBoard : MonoBehaviour
             lineRenderer.useWorldSpace = false;
             lineRenderer.widthCurve = AnimationCurve.Constant(0, 1, 0.4f);
             lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-            lineRenderer.startColor = lineRenderer.endColor = new Color(0, 100f/255f, 179f/255f);
+            lineRenderer.startColor = lineRenderer.endColor = Color.blue;
 
             if (outputNode.position.y != inputNode.position.y) {
                 // connect via zigzag

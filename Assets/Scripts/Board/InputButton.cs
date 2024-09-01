@@ -11,6 +11,7 @@ public class InputButton : BoardObject {
             base.Value = value;
             UpdateSprite(); // Schimbă sprite-ul când se schimbă valoarea
             NotifyOutputs();
+            ChangeWires();
         }
     }
 
@@ -18,6 +19,13 @@ public class InputButton : BoardObject {
         // Obține referința la SpriteRenderer
         spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateSprite(); // Setați sprite-ul inițial
+    }
+
+    public void Init() {
+        // Seteaza starea initiala in intreg circuitul
+        foreach (var output in Outputs) {
+            output.onChange();
+        }
     }
 
     private void OnMouseDown() {
@@ -37,6 +45,14 @@ public class InputButton : BoardObject {
             spriteRenderer.sprite = sprite1; // Afișează sprite-ul 1 dacă valoarea este TRUE
         } else {
             spriteRenderer.sprite = sprite0; // Afișează sprite-ul 0 dacă valoarea este FALSE
+        }
+    }
+
+    private void ChangeWires() {
+        foreach (var wire in Wires) {
+            // Schimbă culoarea firului în funcție de valoarea butonului
+            wire.startColor = Value ? Color.green : Color.blue;
+            wire.endColor = Value ? Color.green : Color.blue;
         }
     }
 }
